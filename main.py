@@ -55,8 +55,10 @@ while True:
             '-H',
             'Content-Type: application/json',
             '-d',
-            f'{{"chatid":{args.chatid},"text":"GPU temp exceeds thermal limits ! ({current_temp}/{args.threshold}C)"}}',
-            f'https://api.telegram.org/bot{args.botid}/sendMessage'
-            ])
+            f'{{"chat_id":"{args.chatid}","text":"GPU temp exceeds thermal limits ! ({current_temp}/{args.threshold}C)"}}',
+            f'https://api.telegram.org/bot{args.botid}/sendMessage',
+            ],
+                       stdout=subprocess.DEVNULL,
+                       stderr=subprocess.STDOUT)
     
     time.sleep(args.interval)
